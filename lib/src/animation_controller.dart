@@ -42,7 +42,7 @@ class AnimationControllerValue {
 /// Useful for preventing the sheet from speeding off screen
 /// or out of it's parent widget, without compromising too much on bounciness.
 ///
-/// NOTE: the [top] padding value is interpeted as a distance from the top.
+/// NOTE: the [top] padding value is interpreted as a distance from the top.
 /// If you want to specify a range, use the `.fromPercentageRange` constructor
 class AnimationPadding {
   static AnimationControllerValue get _zero =>
@@ -125,7 +125,7 @@ class RubberAnimationController extends Animation<double>
   ///   value at which this animation is deemed to be half expanded. It can be
   ///   null.
   ///
-  /// * [dismissible] if set true when the bottomsheet goes at 0 is dismissed
+  /// * [dismissible] if set true when the bottom sheet goes at 0 is dismissed
   ///
   /// * [upperBoundValue] is the largest value this animation can obtain and the
   ///   value at which this animation is deemed to be completed. It cannot be
@@ -148,7 +148,7 @@ class RubberAnimationController extends Animation<double>
     SpringDescription? springDescription,
     required TickerProvider vsync,
   })  : assert(!dismissible || (dismissible && halfBoundValue == null),
-            "dismissable sheets are imcompatible with halfBoundValue"),
+            "dismissible sheets are incompatible with halfBoundValue"),
         lowerBoundValue = lowerBoundValue ??
             AnimationControllerValue(percentage: dismissible ? 0.0 : 0.1),
         upperBoundValue =
@@ -186,7 +186,7 @@ class RubberAnimationController extends Animation<double>
     pixelValuesToPercentage();
   }
 
-  /// Tells if the bottomsheet has to remain closed after drag down
+  /// Tells if the bottom sheet has to remain closed after drag down
   final bool dismissible;
 
   /// A label that is used in the [toString] output. Intended to aid with
@@ -281,7 +281,7 @@ class RubberAnimationController extends Animation<double>
   }
 
   void pixelValuesToPercentage() {
-    // sets initial value if lowerbound has only pixel value
+    // sets initial value if lower bound has only pixel value
     if (initialValue == null && lowerBound == null) {
       _value = lowerBoundValue.pixel! / _height;
     }
@@ -370,13 +370,13 @@ class RubberAnimationController extends Animation<double>
     var roundHalfBound = 0.0;
     if (halfBound != null)
       roundHalfBound = double.parse(halfBound!.toStringAsFixed(2));
-    var roundUppperBound = double.parse(upperBound!.toStringAsFixed(2));
+    var roundUpperBound = double.parse(upperBound!.toStringAsFixed(2));
 
     if (roundValue == roundLowerBound) {
       animationState.value = AnimationState.collapsed;
     } else if (halfBound != null && roundValue == roundHalfBound) {
       animationState.value = AnimationState.half_expanded;
-    } else if (roundValue == roundUppperBound) {
+    } else if (roundValue == roundUpperBound) {
       animationState.value = AnimationState.expanded;
     } else {
       animationState.value = AnimationState.animating;
