@@ -38,7 +38,7 @@ class _SpringPageState extends State<SpringPage>
       ),
       body: Column(
         children: <Widget>[
-          Text("Daming ratio", style: _heading()),
+          Text("Damping ratio", style: _heading()),
           new Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
