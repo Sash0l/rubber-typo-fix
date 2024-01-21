@@ -16,7 +16,7 @@ class _MenuPageState extends State<MenuPage>
   void initState() {
     _controller = RubberAnimationController(
       vsync: this,
-      dismissable: true,
+      dismissible: true,
       lowerBoundValue: AnimationControllerValue(pixel: 100),
       upperBoundValue: AnimationControllerValue(pixel: 400),
       duration: Duration(milliseconds: 200),

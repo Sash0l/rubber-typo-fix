@@ -119,13 +119,13 @@ class RubberAnimationController extends Animation<double>
   ///
   /// * [lowerBoundValue] is the smallest value this animation can obtain and the
   ///   value at which this animation is deemed to be dismissed.
-  ///   Defaults to 0% if [dismissable] and 10% if not.
+  ///   Defaults to 0% if [dismissible] and 10% if not.
   ///
   /// * [halfBoundValue] is the half value this animation can obtain and the
   ///   value at which this animation is deemed to be half expanded. It can be
   ///   null.
   ///
-  /// * [dismissable] if set true when the bottomsheet goes at 0 is dismissed
+  /// * [dismissible] if set true when the bottomsheet goes at 0 is dismissed
   ///
   /// * [upperBoundValue] is the largest value this animation can obtain and the
   ///   value at which this animation is deemed to be completed. It cannot be
@@ -139,7 +139,7 @@ class RubberAnimationController extends Animation<double>
     AnimationControllerValue? lowerBoundValue,
     this.halfBoundValue,
     AnimationControllerValue? upperBoundValue,
-    this.dismissable = false,
+    this.dismissible = false,
     this.initialValue,
     this.duration,
     this.debugLabel,
@@ -147,10 +147,10 @@ class RubberAnimationController extends Animation<double>
     AnimationPadding? padding,
     SpringDescription? springDescription,
     required TickerProvider vsync,
-  })  : assert(!dismissable || (dismissable && halfBoundValue == null),
+  })  : assert(!dismissible || (dismissible && halfBoundValue == null),
             "dismissable sheets are imcompatible with halfBoundValue"),
         lowerBoundValue = lowerBoundValue ??
-            AnimationControllerValue(percentage: dismissable ? 0.0 : 0.1),
+            AnimationControllerValue(percentage: dismissible ? 0.0 : 0.1),
         upperBoundValue =
             upperBoundValue ?? AnimationControllerValue(percentage: 0.9),
         _padding = padding ?? AnimationPadding.contain() {
@@ -187,7 +187,7 @@ class RubberAnimationController extends Animation<double>
   }
 
   /// Tells if the bottomsheet has to remain closed after drag down
-  final bool dismissable;
+  final bool dismissible;
 
   /// A label that is used in the [toString] output. Intended to aid with
   /// identifying animation controller instances in debug output.
@@ -519,8 +519,8 @@ class RubberAnimationController extends Animation<double>
     assert(elapsedInSeconds >= 0.0);
     _value = _simulation!.x(elapsedInSeconds);
     if (_simulation!.isDone(elapsedInSeconds) ||
-        (dismissable && _value < lowerBound! && elapsedInSeconds > 0)) {
-      if (_value < lowerBound! && dismissable) _value = lowerBound!;
+        (dismissible && _value < lowerBound! && elapsedInSeconds > 0)) {
+      if (_value < lowerBound! && dismissible) _value = lowerBound!;
 
       _status = AnimationStatus.completed;
       notifyStatusListeners(_status);

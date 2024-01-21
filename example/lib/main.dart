@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'default.dart';
-import 'dismissable.dart';
+import 'dismissible.dart';
 import 'menu.dart';
 import 'padding.dart';
 import 'scroll.dart';
@@ -92,11 +92,11 @@ class _HomePageState extends State<HomePage>
             },
           ),
           ElevatedButton(
-            child: Text("Dismissable"),
+            child: Text("Dismissible"),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DismissablePage()),
+                MaterialPageRoute(builder: (context) => DismissiblePage()),
               );
             },
           ),

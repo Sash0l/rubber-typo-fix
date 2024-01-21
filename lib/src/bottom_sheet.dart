@@ -261,7 +261,7 @@ class RubberBottomSheetState extends State<RubberBottomSheet>
           diff = controller.lowerBound! - controller.value;
         }
         if (controller.value < controller.upperBound! &&
-            controller.dismissable &&
+            controller.dismissible &&
             controller.animationState.value == AnimationState.expanded) {
           diff = controller.upperBound! - controller.value;
         }
